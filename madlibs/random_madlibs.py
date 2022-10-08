@@ -47,18 +47,7 @@ madlibs = {
         },
     },
     "Lunar New Year": {
-        "text": "Many people celebrate Lunar New Year in different ways all over the ---noun1---. \
-            On this holiday, those in China who speak Cantonese, say 'Gung hay fat choy!' This means \
-            . . . 'Wishing you ---plural_noun1--- and prosperity!' To them, and nearly ---number1--- \
-            others, Lunar New Year is one of the most ---adjective1--- and important times of the year. \
-            Also sometimes called Chinese New Year, this celebration is a time for everyone to get \
-            together with their friends, favorite ---plural_noun2---, and even cousin ---person_in_room1---. \
-            It is a time to honor their ancestors. Lunar New Year is a time to eat lots of \
-            ---type_of_food_plural---. It is a time for ---adjective2--- beginnings, so go ahead and \
-            buy a new ---adjective3--- ---article_of_clothing---. On New ---noun2---'s Eve, everyone \
-            stays up late. Then, they go outside and light loud ---plural_noun3---. When the clock \
-            strikes ---number2---, they open the doors and windows to their ---type_of_building---, \
-            let the ---adjective4--- year out, and welcome the ---adjective5--- year in. Happy New Year!",
+        "text": "Many people celebrate Lunar New Year in different ways all over the ---noun1---. On this holiday, those in China who speak Cantonese, say 'Gung hay fat choy!' This means . . . 'Wishing you ---plural_noun1--- and prosperity!' To them, and nearly ---number1--- others, Lunar New Year is one of the most ---adjective1--- and important times of the year. Also sometimes called Chinese New Year, this celebration is a time for everyone to get together with their friends, favorite ---plural_noun2---, and even cousin ---person_in_room1---. It is a time to honor their ancestors. Lunar New Year is a time to eat lots of ---type_of_food_plural---. It is a time for ---adjective2--- beginnings, so go ahead and buy a new ---adjective3--- ---article_of_clothing---. On New ---noun2---'s Eve, everyone stays up late. Then, they go outside and light loud ---plural_noun3---. When the clock strikes ---number2---, they open the doors and windows to their ---type_of_building---, let the ---adjective4--- year out, and welcome the ---adjective5--- year in. Happy New Year!",
         "vars": {
             "noun1": "Noun: ",
             "plural_noun1": "Plural Noun: ",
