@@ -5,14 +5,28 @@ A guessing game of variable difficulty.
 
 Author: Maarten Broekman
 
-Inspired by: https://www.freecodecamp.org/news/python-projects-for-beginners/#guess-the-number-game-python-project-computer-
-Expanded on 
+Inspired by:
+    https://www.freecodecamp.org/news/python-projects-for-beginners/#guess-the-number-game-python-project-computer-
+    https://www.freecodecamp.org/news/python-projects-for-beginners/#guess-the-number-game-python-project-user-
 
-Options:
-  --low: the lowest number. Default is 0
-  --high: the highest number. Default is 10
-  --guesses: number of guesses. Default is 3
+Skills:
+    - user input
+    - random number generation
+    - f-strings
+    - Fraction usage
+    - loop-else clauses
 
+usage: guess.py [-h] [--low LOW] [--high HIGH] [--guess GUESS] [--comp]
+
+A Guessing Game of variable difficulty.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --low LOW, -l LOW     The lowest number of the range to guess from.
+  --high HIGH, -H HIGH  The highest number of the range to guess from.
+  --guess GUESS, -g GUESS
+                        The number of guesses available.
+  --comp, -c            Make the program guess the number.
 '''
 
 import argparse
@@ -72,7 +86,7 @@ parser = argparse.ArgumentParser(description="A Guessing Game of variable diffic
 parser.add_argument("--low","-l",action="store",type=int,help="The lowest number of the range to guess from.",default=0)
 parser.add_argument("--high","-H",action="store",type=int,help="The highest number of the range to guess from.",default=10)
 parser.add_argument("--guess","-g",action="store",type=int,help="The number of guesses available.",default=3)
-parser.add_argument("--comp","-c",action="store_true",help="Make the project guess the number.")
+parser.add_argument("--comp","-c",action="store_true",help="Make the program guess the number.")
 args = parser.parse_args()
 
 # Swap the high and low of the range to avoid silliness
