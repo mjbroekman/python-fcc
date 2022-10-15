@@ -69,19 +69,19 @@ def comp_game(low, high, guess):
     while guess_num <= guess:
         comp_guess = low + int( (high - low) / 2 )
         feedback = ''
-        feedback = input(f"I'm going to guess: {comp_guess}. Is that high (H), low (L), or correct (C)? ")
-        while feedback.capitalize() not in valid_feedback:
+        feedback = input(f"I'm going to guess: {comp_guess}. Is that high (H), low (L), or correct (C)? ").capitalize()
+        while feedback not in valid_feedback:
             print("I'm sorry. I didn't understand your feedback.")
-            feedback = input(f"I'm going to guess: {comp_guess}. Is that high (H), low (L), or correct (C)? ")
+            feedback = input(f"I'm going to guess: {comp_guess}. Is that high (H), low (L), or correct (C)? ").capitalize()
 
         guess_num += 1
-        if feedback.capitalize() == 'H':
+        if feedback == 'H':
             high = comp_guess - 1
             print(f"Hmmm. I was too high with {comp_guess}. Let me try again. This time between {low} and {high}\n")
-        if feedback.capitalize() == 'L':
+        if feedback == 'L':
             low = comp_guess + 1
             print(f"Hmmm. I was too low with {comp_guess}. Let me try again. This time between {low} and {high}\n")
-        if feedback.capitalize() == 'C':
+        if feedback == 'C':
             print("Amazing! I was able to guess your number! Computers are really smart, aren't we?\n")
             break
     else: # No break
