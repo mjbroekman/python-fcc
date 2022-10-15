@@ -67,8 +67,14 @@ def comp_game(low, high, guess):
     guess_num = 1
     valid_feedback = [ 'H', 'L', 'C' ]
     while guess_num <= guess:
-        comp_guess = low + int( (high - low) / 2 )
-        feedback = ''
+        if low != high:
+            comp_guess = random.randint(low,high)
+        else:
+            comp_guess = low
+
+        if guess_num > 1:
+            print(f" Let me try again. This time between {low} and {high}\n")
+
         feedback = input(f"I'm going to guess: {comp_guess}. Is that high (H), low (L), or correct (C)? ").capitalize()
         while feedback not in valid_feedback:
             print("I'm sorry. I didn't understand your feedback.")
@@ -77,12 +83,12 @@ def comp_game(low, high, guess):
         guess_num += 1
         if feedback == 'H':
             high = comp_guess - 1
-            print(f"Hmmm. I was too high with {comp_guess}. Let me try again. This time between {low} and {high}\n")
+            print(f"Hmmm. I was too high with {comp_guess}.")
         if feedback == 'L':
             low = comp_guess + 1
-            print(f"Hmmm. I was too low with {comp_guess}. Let me try again. This time between {low} and {high}\n")
+            print(f"Hmmm. I was too low with {comp_guess}.")
         if feedback == 'C':
-            print("Amazing! I was able to guess your number! Computers are really smart, aren't we?\n")
+            print("Amazing! I was able to guess your number, {comp_guess}!\nComputers are really smart, aren't we?\n")
             break
     else: # No break
         print("\nWow! That was tough. I ran out of guesses.")
