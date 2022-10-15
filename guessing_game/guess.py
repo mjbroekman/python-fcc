@@ -16,6 +16,11 @@ Skills:
     - Fraction usage
     - loop-else clauses
 
+Add-ons (beyond what the FCC projects showed)
+    - Added limits to the number of guesses that can be made
+    - Added limit to the range of numbers to avoid guaranteed wins
+    - Added ability to specify the low and high numbers
+
 usage: guess.py [-h] [--low LOW] [--high HIGH] [--guess GUESS] [--comp]
 
 A Guessing Game of variable difficulty.
