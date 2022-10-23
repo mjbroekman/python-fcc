@@ -35,7 +35,6 @@ optional arguments:
 '''
 
 import argparse
-from operator import contains
 import sys
 import random
 
