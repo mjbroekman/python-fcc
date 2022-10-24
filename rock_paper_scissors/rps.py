@@ -26,7 +26,6 @@ optional arguments:
   --rpsls, -l    Play Rock, Paper, Scissors, Lizard, Spock instead.
 '''
 import argparse
-import sys
 import random
 
 
