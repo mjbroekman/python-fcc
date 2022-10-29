@@ -13,12 +13,13 @@ Skills:
     - random selection from list
     - f-strings
     - string replacement
-    - 
+    - list comparison
+    - list membership
 
 Add-ons (beyond what the FCC projects showed)
     - reading from files
     - reading from Internet source
-    - 
+    - alternate game display
 
 usage: hangman.py [-h] [-f file] [-u url]
 
