@@ -208,9 +208,9 @@ def hangman(state: int):
         """)
 
 
-def play(word: string,wof_rules: bool):
+def play(word: string,hang: bool,wof_rules: bool):
     hangman_state = 0
-    print("You have eight guesses to figure out the word...")
+    print("You have {} guesses to figure out the word...".format(8 - hangman_state))
     hidden = list(string.ascii_lowercase)
     guessed = []
     if wof_rules:
@@ -223,6 +223,7 @@ def play(word: string,wof_rules: bool):
     while hangman_state < 8:
         print(re.sub("_"," _ ",current_state),end="")
         print("    Already guessed: " + ", ".join(guessed))
+        print("You have {} guesses remaining. ".format(8 - hangman_state),end="")
         next_guess = input('What is the next letter you wish to reveal? ').lower()
         if next_guess in guessed:
             print(f'{next_guess} has already been guessed...')
@@ -250,8 +251,8 @@ def play(word: string,wof_rules: bool):
             hangman_state = hangman_state + 1
         
         current_state = new_state
-        hangman(hangman_state)
-
+        if hang:
+            hangman(hangman_state)
 
     print("I'm sorry... You lose...")
     print(f'The word was:\n\t{word}\n')
@@ -261,6 +262,7 @@ parser = argparse.ArgumentParser(description="An implementation of Hangman.")
 parser.add_argument("--file","-f",action="store",help="Use the specified file as a word source.",default="words.json")
 parser.add_argument("--url","-u",action="store_true",help="Treat FILE as a URL instead of a local file.")
 parser.add_argument("--wof","-w",action="store_true",help="Use Wheel of Fortune rules and reveal rstlne at the start.")
+parser.add_argument("--hang",action="store_true",help="Show the scaffold, noose, and body")
 args = parser.parse_args()
 
-play(get_word(args.file,args.url).lower(),args.wof)
+play(get_word(args.file,args.url).lower(),args.hang,args.wof)
