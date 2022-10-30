@@ -50,7 +50,7 @@ parser.add_argument("--duration","-d",action="store",type=int,help="The duration
 parser.add_argument("--message","-m",action="store",type=str,help="Optional message to display.",default="Timer completed!")
 args = parser.parse_args()
 
-if args.duration < 1:
+while args.duration < 1:
     args.duration = input('Enter the countdown time in seconds: ')
 
 try:
