@@ -56,8 +56,6 @@ def get_word(file: str,url: bool) -> str:
         
             if mime_type[0] == "application/json":
                 words = json.loads(words)
-                if 'source' in words.keys():
-                    print("Loaded JSON file from {}".format(words['source']))
                 if 'data' in words.keys():
                     return random.choice(words['data'])
                 if 'words' in words.keys():
