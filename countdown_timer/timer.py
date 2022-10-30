@@ -25,10 +25,6 @@ def countdown(duration:int, message:str):
         minutes, seconds = divmod(duration,60)
         clear = "       "
 
-        if minutes > 999:
-            print('Oh, come on... be reasonable... Over 1000 minutes is just silly. Try a smaller number.')
-            sys.exit(1)
-
         if minutes < 100:
             timer = '{:02d}:{:02d}'.format(minutes,seconds)
         else:
@@ -46,14 +42,22 @@ def countdown(duration:int, message:str):
         print('Timer completed!')
 
 parser = argparse.ArgumentParser(description="A Python Countdown Timer.")
-parser.add_argument("--duration","-d",action="store",type=int,help="The duration of the countdown timer.",default=0)
+parser.add_argument("--duration","-d",action="store",type=int,help="The duration of the countdown timer.",default=10)
 parser.add_argument("--message","-m",action="store",type=str,help="Optional message to display.",default="Timer completed!")
 args = parser.parse_args()
 
-while args.duration < 1:
-    args.duration = input('Enter the countdown time in seconds: ')
-
 try:
+    while args.duration < 1 or args.duration >= 60000:
+        if args.duration < 1:
+            print('Can not count "down" from that {} to zero.'.format(args.duration))
+        if args.duration >= 60000:
+            print('Too long of a duration. Try something less than 1000 minutes.')
+
+        args.duration = int(input('Enter the countdown time in seconds: '))
+
     countdown(int(args.duration),args.message)
 except KeyboardInterrupt as ke:
     print('Exiting...')
+
+except ValueError as ve:
+    print('Not a valid number... Aborting.')
