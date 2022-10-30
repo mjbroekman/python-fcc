@@ -209,7 +209,7 @@ def hangman(state: int):
 
 def play(word: string,hang: bool,wof_rules: bool):
     hangman_state = 0
-    print("You have {} guesses to figure out the word...".format(8 - hangman_state))
+    print("You can make {} incorrect guesses ...".format(8 - hangman_state))
     hidden = list(string.ascii_lowercase)
     guessed = []
     if wof_rules:
@@ -220,9 +220,10 @@ def play(word: string,hang: bool,wof_rules: bool):
 
     current_state = reveal(word,hidden)
     while hangman_state < 8:
-        print(re.sub("_"," _ ",current_state),end="")
-        print("    Already guessed: " + ", ".join(guessed))
-        print("You have {} guesses remaining. ".format(8 - hangman_state),end="")
+        print(re.sub("_"," _ ",current_state))
+        if guessed:
+            print("- Already guessed: [ " + ", ".join(guessed) + " ]")
+        print("You have {} incorrect guesses remaining. ".format(8 - hangman_state))
         next_guess = input('What is the next letter you wish to reveal? ').lower()
         if next_guess in guessed:
             print(f'{next_guess} has already been guessed...')
@@ -264,4 +265,7 @@ parser.add_argument("--wof","-w",action="store_true",help="Use Wheel of Fortune 
 parser.add_argument("--hang",action="store_true",help="Show the scaffold, noose, and body")
 args = parser.parse_args()
 
-play(get_word(args.file,args.url).lower(),args.hang,args.wof)
+try:
+    play(get_word(args.file,args.url).lower(),args.hang,args.wof)
+except KeyboardInterrupt as ke:
+    print("Exiting...")
