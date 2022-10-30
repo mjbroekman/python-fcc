@@ -49,7 +49,7 @@ args = parser.parse_args()
 try:
     while args.duration < 1 or args.duration >= 60000:
         if args.duration < 1:
-            print('Can not count "down" from that {} to zero.'.format(args.duration))
+            print('Can not count "down" from {} to zero.'.format(args.duration))
         if args.duration >= 60000:
             print('Too long of a duration. Try something less than 1000 minutes.')
 
