@@ -1,3 +1,10 @@
+'''
+game.py - Game board class and methods for TicTacToe
+
+based on:
+  https://www.freecodecamp.org/news/python-projects-for-beginners/#tic-tac-toe-python-project
+  
+'''
 class TicTacToe:
     def __init__(self):
         self.board = [' ' for _ in range(9)]

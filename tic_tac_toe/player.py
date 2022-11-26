@@ -1,5 +1,9 @@
 '''
 player.py - The player object for tic-tac-toe
+
+based on:
+  https://www.freecodecamp.org/news/python-projects-for-beginners/#tic-tac-toe-python-project
+
 '''
 import math
 import random
