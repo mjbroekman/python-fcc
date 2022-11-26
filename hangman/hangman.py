@@ -95,7 +95,7 @@ def hangman(state: int):
     /==========\
      ||        |
      ||        =
-     ||        \O
+     ||        \\O
      ||        /|\
      ||         |
      ||        / \
@@ -207,7 +207,7 @@ def hangman(state: int):
         """)
 
 
-def play(word: string,hang: bool,wof_rules: bool):
+def play(word:str ,hang: bool,wof_rules: bool):
     hangman_state = 0
     print("You can make {} incorrect guesses ...".format(8 - hangman_state))
     hidden = list(string.ascii_lowercase)
