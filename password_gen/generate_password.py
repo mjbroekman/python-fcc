@@ -20,6 +20,17 @@ import argparse
 import random
 import string
 
+class PasswordConfig:
+    """PasswordConfig object
+
+    """
+    def __init__(self,alphabet:str,minchar:int,complexity:int,length:int):
+        self.alphabet = alphabet
+        self.minchar = minchar
+        self.complexity = complexity
+        self.length = length
+
+
 def complex_enough(password:str,alphabet:str,min_per_class:int) -> bool:
     """Checks to see if there are enough characters in the password from each class in the alphabet
 
@@ -58,7 +69,7 @@ def complex_enough(password:str,alphabet:str,min_per_class:int) -> bool:
     
     return True
 
-def generate_password(alphabet:string,config:dict) -> str:
+def generate_password(config:PasswordConfig) -> str:
     """Generates a password
 
     Args:
@@ -77,12 +88,12 @@ def generate_password(alphabet:string,config:dict) -> str:
 
     password = ''
     while len(password) < config.length:
-        password += random.choice(alphabet)
+        password += random.choice(config.alphabet)
 
-    if complex_enough(password,alphabet,config.minchar):
+    if complex_enough(password,config.alphabet,config.minchar):
         return password
     
-    return(generate_password(alphabet,config))
+    return(generate_password(config))
 
 
 def get_alphabet(complexity:int) -> str:

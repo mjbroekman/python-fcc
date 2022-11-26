@@ -19,7 +19,7 @@ Add-ons:
 '''
 
 import argparse
-from generate_password import remove_excluded, get_alphabet, generate_password
+import generate_password
 
 parser = argparse.ArgumentParser(description="A password generator implemented in Python.")
 parser.add_argument("--count","-c",action="store",type=int,help="Number of passwords to generate")
@@ -43,10 +43,11 @@ if not args.length:
 print("... generating " + str(args.count) + " passwords",end="")
 print(" of at least " + str(args.length) + " characters from the following character set:")
 
-alphabet = remove_excluded(get_alphabet(args.complexity,),args.exclude)
+alphabet = generate_password.remove_excluded(generate_password.get_alphabet(args.complexity,),args.exclude)
 
+pwconfig = generate_password.PasswordConfig(alphabet,args.minchar,args.complexity,args.length)
 print("\t" + alphabet + "\n")
 count = 1
 while count <= args.count:
-    print(f"\t{count}: " + generate_password(alphabet,args))
+    print(f"\t{count}: " + generate_password.generate_password(pwconfig))
     count += 1
