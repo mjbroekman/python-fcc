@@ -15,7 +15,7 @@ Added features:
 - commandline arguments
   
 '''
-from player import RandomComputerPlayer, HumanPlayer, Player
+from player import StrategicComputerPlayer, HumanPlayer, Player
 
 
 class TicTacToe:
@@ -151,13 +151,10 @@ def play(game, x_player:Player, o_player:Player, print_game=True):
     letter = 'X'
     # iterate while there are still empty squares and no winner
     while game.empty_squares():
-        if print_game:
-            game.print_board_nums()
-
         if letter == 'X':
-            square = x_player.get_move(game)
+            square = x_player.get_move(game,print_game)
         else:
-            square = o_player.get_move(game)
+            square = o_player.get_move(game,print_game)
 
         game.mark_square(square,letter)
     
@@ -183,15 +180,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="A password generator implemented in Python.")
     parser.add_argument("-x",action="store_true",help="Set X to be a human player",default=False)
     parser.add_argument("-o",action="store_true",help="Set O to be a human player",default=False)
+    parser.add_argument("--strategy","-s",action="store",choices=['corner','side','random','optimal'],type=str,help="Strategy to use",default="optimal")
     args = parser.parse_args()
 
-    x_player = RandomComputerPlayer('x')
+    x_player = StrategicComputerPlayer('X',args.strategy)
     if args.x:
-        x_player = HumanPlayer('x')
+        x_player = HumanPlayer('X')
 
-    o_player = RandomComputerPlayer('o')
+    o_player = StrategicComputerPlayer('O',args.strategy)
     if args.o:
-        o_player = HumanPlayer('o')
+        o_player = HumanPlayer('O')
 
     game = TicTacToe()
     play(game,x_player,o_player,print_game=True)
