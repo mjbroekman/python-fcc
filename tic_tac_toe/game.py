@@ -12,9 +12,11 @@ Skills:
 Added features:
 - kwargs (allows check_winner to be called without square/letter)
 - getter/setter
+- commandline arguments
   
 '''
 from player import RandomComputerPlayer, HumanPlayer, Player
+
 
 class TicTacToe:
     def __init__(self):
@@ -177,7 +179,19 @@ def play(game, x_player:Player, o_player:Player, print_game=True):
         return None
 
 if __name__ == '__main__':
-    x_player = HumanPlayer('x')
+    import argparse
+    parser = argparse.ArgumentParser(description="A password generator implemented in Python.")
+    parser.add_argument("-x",action="store_true",help="Set X to be a human player",default=False)
+    parser.add_argument("-o",action="store_true",help="Set O to be a human player",default=False)
+    args = parser.parse_args()
+
+    x_player = RandomComputerPlayer('x')
+    if args.x:
+        x_player = HumanPlayer('x')
+
     o_player = RandomComputerPlayer('o')
+    if args.o:
+        o_player = HumanPlayer('o')
+
     game = TicTacToe()
     play(game,x_player,o_player,print_game=True)
