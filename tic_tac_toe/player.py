@@ -33,7 +33,7 @@ class Player:
     def letter(self,letter):
         self._letter = letter.upper()
 
-    def get_move(self, game):
+    def get_move(self, game, print_game):
         pass
 
 class RandomComputerPlayer(Player):
@@ -80,7 +80,7 @@ class StrategicComputerPlayer(Player):
     def strategy(self,strat):
         self._strategy = strat
     
-    def get_move(self, game, print_game):
+    def get_move(self, game, print_game:bool):
         if print_game:
             pass
 
