@@ -94,8 +94,14 @@ class StrategicComputerPlayer(Player):
                 square = random.choice([1,3,4,5,7])
 
         else:
-            # Get best move based on minimax algorithm
-            square = self.minimax(game, self.letter)['position']
+            if self.strategy == "random":
+                # Get a random square
+                square = random.choice(game.available_moves())
+            elif self.strategy == "optimal":
+                # Get best move based on minimax algorithm
+                square = self.minimax(game, self.letter)['position']
+            else:
+                square = self.multimax(game, self.letter, self.strategy)['position']
 
         return square
 
@@ -134,6 +140,53 @@ class StrategicComputerPlayer(Player):
             # step 4: update dict if necessary
             if player == max_player:
                 if sim_score['score'] > best['score']:
+                    best = sim_score
+            else:
+                if sim_score['score'] < best['score']:
+                    best = sim_score
+            
+        return best
+
+    def multimax(self, state, player, strat):
+        max_player = self.letter # yourself
+        other_player = 'O' if player == 'X' else 'X' # set opposing player to the other player
+
+        # first, check to see if the previous move was a winner
+        # base case
+        # return position and minimax score so we can keep track of outcomes
+        if state.winner == other_player:
+            # if the _current_ state has a winner, return no position and the appropriate score
+            return {
+                    'position': None,
+                    'score': 1 * (state.num_empty_squares() + 1) if other_player == max_player else -1 * (state.num_empty_squares() + 1)
+                    }
+
+        elif not state.available_moves():
+            # if there is no winner and no available moves, return no position and a score of 0 (tie)
+            return { 'position': None, 'score': 0 }
+
+        if player == max_player:
+            best = { 'position': None, 'score': -math.inf } # (maximize) any new score for you will be better than this
+        else:
+            best = { 'position': None, 'score': math.inf } # (minimize) any new score for the opponent will be 'better' than this
+
+        for possible_move in state.available_moves():
+            # step 1: make a move, try the spot
+            state.mark_square(possible_move,player)
+            # step 2: recurse with minimax to simulate the game after making the move
+            sim_score = self.minimax(state,other_player)
+            # step 3: undo the move
+            state.board[possible_move] = ' '
+            state.winner = None
+            sim_score['position'] = possible_move
+            # step 4: update dict if necessary
+            if player == max_player:
+                move_score = sim_score['score']
+                if strat == "side" and possible_move in [1,3,4,5,7]:
+                    move_score += 1
+                if strat == "corner" and possible_move in [0,2,4,6,8]:
+                    move_score += 1
+                if move_score > best['score']:
                     best = sim_score
             else:
                 if sim_score['score'] < best['score']:
